@@ -25,12 +25,32 @@
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('apiResponse').textContent = JSON.stringify(data, null, 2);
+                    displayData(data.response);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                     document.getElementById('apiResponse').textContent = 'Error fetching data: ' + error;
                 });
+        }
+
+        function displayData(response) {
+            const container = document.getElementById('apiResponse');
+            const registrant = response.registrant || 'N/A';
+            const registration = response.registration;
+            const nameServers = response.name_servers.join(', ');
+            const whoisRecord = response.whois.record.replace(/\n/g, '<br>');
+
+            container.innerHTML = `
+                <p><strong>Registrant:</strong> ${registrant}</p>
+                <p><strong>Created:</strong> ${registration.created}</p>
+                <p><strong>Expires:</strong> ${registration.expires}</p>
+                <p><strong>Updated:</strong> ${registration.updated}</p>
+                <p><strong>Registrar:</strong> ${registration.registrar}</p>
+                <p><strong>Status:</strong> ${registration.statuses.join(', ')}</p>
+                <p><strong>Name Servers:</strong> ${nameServers}</p>
+                <p><strong>WHOIS Record:</strong></p>
+                <pre>${whoisRecord}</pre>
+            `;
         }
     </script>
 </body>
