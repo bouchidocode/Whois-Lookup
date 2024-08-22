@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domain Search</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Domain Search</h1>
-    <input type="text" id="domainInput" placeholder="Enter domain name">
-    <button onclick="performSearch()">Search</button>
-    <p id="result"></p>
-
-    <script>
-        function performSearch() {
-            const domain = document.getElementById('domainInput').value;
-            window.location.href = `result.html?domain=${encodeURIComponent(domain)}`;
-        }
-    </script>
+    <div class="container">
+        <h1>Domain Search</h1>
+        <input type="text" id="domainInput" placeholder="Enter domain name">
+        <button id="searchButton">Search</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
