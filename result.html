@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Search Result</title>
+</head>
+<body>
+    <h1>Domain Search Result</h1>
+    <pre id="apiResponse"></pre>
+
+    <script>
+        // Extract domain from URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const domain = params.get('domain');
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchDomainData(domain);
+        });
+
+        function fetchDomainData(domain) {
+            const apiUrl = `https://api.domaintools.com/v1/domaintools.com/whois/${domain}`; // Replace with your actual API endpoint
+
+            fetch(apiUrl)
+                .then(response => response.json()) // Adjust as per API's response format
+                .then(data => {
+                    document.getElementById('apiResponse').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('apiResponse').textContent = 'Error fetching data: ' + error;
+                });
+        }
+    </script>
+</body>
+</html>
