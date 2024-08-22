@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domain Search Result</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Domain Search Result</h1>
-    <pre id="apiResponse"></pre>
-
+    <div id="apiResponse" class="container"></div>
     <script>
-        // Extract domain from URL parameters
-        const params = new URLSearchParams(window.location.search);
-        const domain = params.get('domain');
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            fetchDomainData(domain);
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const domain = params.get('domain');
+            if (domain) {
+                fetchDomainData(domain);
+            } else {
+                document.getElementById('apiResponse').textContent = 'No domain provided.';
+            }
         });
 
         function fetchDomainData(domain) {
-            const apiUrl = `https://api.domaintools.com/v1/domaintools.com/whois/${domain}`; // Replace with your actual API endpoint
-
+            const apiUrl = `https://api.domaintools.com/v1/domaintools.com/whois/${domain}`;
             fetch(apiUrl)
-                .then(response => response.json()) // Adjust as per API's response format
+                .then(response => response.json())
                 .then(data => {
                     document.getElementById('apiResponse').textContent = JSON.stringify(data, null, 2);
                 })
                 .catch(error => {
+                    console.error('Error fetching data:', error);
                     document.getElementById('apiResponse').textContent = 'Error fetching data: ' + error;
                 });
         }
