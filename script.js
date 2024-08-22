@@ -1,5 +1,5 @@
 function fetchDomainData(domain) {
-    const apiUrl = `https://<your-serverless-function-url>/whois/${domain}`;
+    const apiUrl = `https://api.domaintools.com/v1/domaintools.com/whois/${domain}`;
 
     fetch(apiUrl)
         .then(response => response.json())
