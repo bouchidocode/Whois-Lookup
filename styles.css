@@ -15,9 +15,31 @@ input[type="text"] {
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
     padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#apiResponse p, #apiResponse pre {
+    text-align: left;
+    margin: 10px 0;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
 }
